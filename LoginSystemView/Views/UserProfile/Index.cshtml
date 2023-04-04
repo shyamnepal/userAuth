@@ -1,0 +1,82 @@
+﻿@using System.Security.Claims;
+@model UserProfile
+
+
+
+@{
+    Layout = "~/views/shared/_Layout.cshtml";
+    
+
+}
+
+
+@Html.ActionLink("Edit", "Edit", "UserProfile", new {userName=User.Identity.Name}, new {@class="btn btn-sm btn-success"})
+<br />
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title"> Uplaod User Profile</h4>
+          
+            <form class="form-group" asp-action="AddProfile" asp-controller="UserProfile" method="post" enctype="multipart/form-data">
+                @if (User.Identity.IsAuthenticated)
+                {
+
+                    <div class="form-group">
+                        <input asp-for="UserId" type="hidden" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" class="form-control" id="exampleInputUsername1" placeholder="Userid">
+                    </div>
+                }
+              
+                <div class="form-group">
+                    <label for="exampleInputPassword1">City</label>
+                    <input type="text" asp-for="City" class="form-control" id="exampleInputPassword1" placeholder="city"/>
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Image</label>
+                    <input type="file" asp-for="Image" class="form-control" id="exampleInputPassword1"/>
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputUsername1">Address</label>
+                    <input asp-for="Address" type="text" class="form-control" id="exampleInputUsername1" placeholder="Address"/>
+                    <span asp-validation-for="@Model.Address" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputUsername1">Age</label>
+                    <input asp-for="Age" type="number" class="form-control" id="exampleInputUsername1" placeholder="Age">
+                    <span asp-validation-for="@Model.Age" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputUsername1">Education</label>
+                    <input asp-for="Education" type="text" class="form-control" id="exampleInputUsername1" placeholder="Education">
+                    <span asp-validation-for="Education" class="text-danger"></span>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" value="male" asp-for="Gender"  type="radio" name="Gender">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        male
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" asp-for="Gender" value="female" type="radio" name="Gender" >
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        female
+                    </label>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+
+
+
+                <button type="submit" class="btn btn-primary me-2">Submit</button>
+                <partial name="_ValidationScriptsPartial" />
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>

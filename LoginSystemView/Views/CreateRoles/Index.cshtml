@@ -1,0 +1,21 @@
+﻿@model AddRoles
+@{
+    Layout = "~/views/shared/_Layout.cshtml";
+}
+
+<div class="col-md-6 ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Create Roles</h4>
+
+            <form class="forms-sample" asp-action="AddRoles" asp-controller="CreateRoles" method="post">
+                <div class="form-group">
+                    <label for="exampleInputUsername1">Role Name</label>
+                    <input asp-for="Name" type="text" class="form-control" id="exampleInputUsername" placeholder="rolename">
+                </div>
+                <button type="submit" class="btn btn-primary me-2">Submit</button>
+
+            </form>
+        </div>
+    </div>
+</div>

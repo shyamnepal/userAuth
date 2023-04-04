@@ -1,0 +1,32 @@
+﻿@model RoleAssignModel
+
+@{
+    Layout = "~/views/shared/_Layout.cshtml";
+}
+
+
+
+<div class="col-md-6 ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Role Assign to the User</h4>
+            
+            <form class="forms-sample" asp-action="RoleAssignToUser" asp-controller="RoleAssign" method="post">
+                <div class="form-group">
+                    <label for="exampleInputUsername1">Username</label>
+                    <input asp-for="UserName" type="text" class="form-control" id="exampleInputUsername" placeholder="Username">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputPassword1">RoleName</label>
+                    @Html.DropDownListFor(x=> x.Name, new  SelectList(ViewBag.roles, "name" ), new {@class="form-control"})
+                </div>
+
+
+                <button type="submit" class="btn btn-primary me-2">Submit</button>
+             
+            </form>
+        </div>
+    </div>
+</div>
+

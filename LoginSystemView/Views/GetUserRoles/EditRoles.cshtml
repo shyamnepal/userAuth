@@ -1,0 +1,39 @@
+﻿@model UserRolesModel
+
+@{
+
+    var drop = ViewData["dropDown"] as List<SelectListItem>;
+    Layout = "~/views/shared/_Layout.cshtml";
+}
+
+<div class="col-md-6 ">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Edit Assign Role to the User</h4>
+
+            <form class="forms-sample" asp-action="EditUserRoles" asp-controller="GetUserRoles" method="post">
+                <div class="form-group">
+                    <label for="exampleInputUsername1">User Name</label>
+                    <input asp-for="Username" type="text" class="form-control" id="exampleInputUsername" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label for="exampleEmail">Email</label>
+                    <input asp-for="Email" type="text" class="form-control" id="exampleEmail" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="exampleRole">Role</label>
+                    @*                    <dre" type="text" class="form-control" id="exampleRole" placeholder="Role">
+                    *@
+                    @Html.DropDownListFor(x=>x.RoleId, drop,"Select Role", new { @class ="form-control"})
+                </div>
+
+
+                <input asp-for="Id" type="hidden" class="form-control" id="exampleId" placeholder="Id" />
+                @*<input asp-for="RoleId" type="hidden" class="form-control" id="exampleRoleId" placeholder="RoleId" />*@
+
+                <button type="submit" class="btn btn-primary me-2">Submit</button>
+
+            </form>
+        </div>
+    </div>
+</div>

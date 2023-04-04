@@ -1,0 +1,82 @@
+﻿@model UserProfile
+
+
+
+
+@{
+    Layout = "~/views/shared/_Layout.cshtml";
+}
+
+@Html.ActionLink("Change Password", "passwordview", "UserProfile", new {userName=User.Identity.Name}, new {@class="btn btn-sm btn-success"})
+
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Edit  Profile</h4>
+          
+            <form class="forms-sample" asp-action="EditData" asp-controller="UserProfile" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="exampleInputUsername1">User Id</label>
+                    <input asp-for="UserId" type="text" class="form-control" id="exampleInputUsername1" placeholder="Userid">
+                    <span asp-validation-for="UserId" class="text-danger"></span>
+                </div>
+              
+                <div class="form-group">
+                    <label for="exampleInputPassword1">City</label>
+                    <input type="text" asp-for="City" class="form-control" id="exampleInputPassword1" placeholder="city">
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputUsername1">Address</label>
+                    <input asp-for="Address" type="text" class="form-control" id="exampleInputUsername1" placeholder="Address">
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputUsername1">Age</label>
+                    <input asp-for="Age" type="number" class="form-control" id="exampleInputUsername1" placeholder="Age">
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputUsername1">Education</label>
+                    <input asp-for="Education" type="text" class="form-control" id="exampleInputUsername1" placeholder="Education">
+                    <span asp-validation-for="Education" class="text-danger"></span>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" value="male" asp-for="Gender" type="radio" name="Gender">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        male
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" asp-for="Gender" value="female" type="radio" name="Gender">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        female
+                    </label>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Image</label>
+                    <input type="file" asp-for="Image" class="form-control" id="exampleInputPassword1">
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Image upload</label>
+                    @if (Model != null)
+                    {
+                        <img decoding="async" src="@("https://localhost:7041/images/"+Model.imgurl)" asp-append-version="true" width="250px" height="250px" />
+                    }
+                     
+
+                </div>
+
+                <button type="submit" class="btn btn-primary me-2">Submit</button>
+             
+            </form>
+        </div>
+    </div>
+</div>
